@@ -3,7 +3,6 @@
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <title>Amendoim</title>
     <style data-styled="active" data-styled-version="5.3.5">
       body {
         padding: 0;
@@ -264,16 +263,6 @@
           options
         ).then((T) => T.json())
       }
-
-      function qrcode() {
-        const options = {
-          method: 'POST',
-        }
-        return fetch(
-          `http://127.0.0.1:5000/orders?produto=${'Amendoim'}&quantidade=${quantidade}&valor=${count}.00`,
-          options
-        ).then((T) => T.json())
-      }
     </script>
   </head>
   <body>
@@ -328,9 +317,9 @@
               Cancelar</button
             ><button
               onclick="
-              qrcode({ valor: '5.00'})
+              qrcode()
                 .then(data =>{   
-                  window.location.href = `http://127.0.0.1:5000/qrcode?produto=Amendoim&quantidade=${quantidade}`
+                  window.location.href = `http://127.0.0.1:5000/qrcode`
                   })
                 .catch()
               "

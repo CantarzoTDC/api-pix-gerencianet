@@ -41,6 +41,12 @@ class PixService():
 
         return json.loads(response.content)
 
+    def get_saldo(self,):
+        response = requests.get(
+            f'{URL_ROOT_PROD}/v2/gn/saldo', headers=self.headers, cert=CERTIFICADO)
+
+        return json.loads(response.content)
+
     # Gera QRCode para o Front
     def qrcode_generator(self, location_id):
         qrcode = self.create_qrcode(location_id)

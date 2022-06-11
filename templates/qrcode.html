@@ -316,6 +316,30 @@
         event.preventDefault()
       )
 
+      async function subscribe() {
+        try {
+          let response = await fetch('/validar')
+          if (response.status == 502) {
+            await subscribe()
+          } else if (response.status != 200) {
+            await new Promise((resolve) => setTimeout(resolve, 10000))
+            await subscribe()
+          } else {
+            let message = await response
+            console.log(message)
+            if (message.status === 200) {
+              window.location.href = `/selecionar`
+            }
+            setTimeout(async () => {
+              await subscribe()
+            }, '5000')
+          }
+        } catch (err) {
+          await subscribe()
+        }
+      }
+
+      subscribe()
     </script>
   </head>
   <body>
